@@ -10,9 +10,7 @@
 
         </div>
 
-        <AppSectionBanner />
-
-        <AppSectionNews />
+        <router-view></router-view>
 
         <div class="container">
             <div class="row my-club mt-5">
@@ -33,23 +31,26 @@
 </template>
 
 <script>
-import AppSectionBanner from './AppSectionBanner.vue';
-import AppSectionNews from './AppSectionNews.vue';
 import AppInput from './AppInput.vue';
+import { mapGetters } from 'vuex'
 
 export default {
     components: {
-        AppSectionBanner,
-        AppSectionNews,
         AppInput
     },
     data() {
         return {
-            myClub: 'My Club'
+            
         }
     },
     props: {
-        championship: String
+        currentComponent: String
+    },
+    computed: {
+        ...mapGetters({
+            championship: 'getChampionship',
+            myClub: 'getClubName'
+        })
     }
 }
 </script>
