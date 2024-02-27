@@ -11,8 +11,9 @@
 
                 <div class="links mr-2">
 
-                    <a href="#" class="btn mr-5">Home</a>
-                    <a href="#" class="btn mr-5">Teams</a>
+                    <router-link to="/" class="btn mr-5">Home</router-link>
+                    <router-link to="/news" class="btn mr-5">News</router-link>
+                    
                     <a href="#" class="btn mr-5">Ranking</a>
 
                     <select name="championship" id="select-championship" class="form-control" @change="$emit('select-championship', $event.target.value)">
@@ -65,5 +66,10 @@ header {
 .links a:focus {
     outline: none !important;
     box-shadow: none !important;
+}
+
+.link-active {
+    background-color: #fff;
+    color: black !important;
 }
 </style>
