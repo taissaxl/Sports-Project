@@ -1,9 +1,12 @@
 <template>
   <div id="app">
 
-    <AppHeader @select-championship="changeChampionship"/>
+    <AppHeader 
+      @select-championship="changeChampionship"
+      @change-component="changeComponent"
+    />
 
-    <AppSection :championship="championship" />
+    <AppSection />
     
     <AppFooter />
     
@@ -14,6 +17,7 @@
 import AppHeader from './components/AppHeader.vue';
 import AppFooter from './components/AppFooter.vue';
 import AppSection from './components/AppSection.vue';
+import { mapActions } from 'vuex'
 
 export default {
   name: 'App',
@@ -24,13 +28,32 @@ export default {
   },
   data() {
     return {
-      championship: 'Brazilian championship'
+
     }
   },
   methods: {
-    changeChampionship(value) {
-      this.championship = value;
+    ...mapActions(['changeChampionship']),
+    changeComponent(value) {
+      
+      let component;
+
+      switch (value) {
+        case 'home':
+        default:
+          component = 'AppSectionBanner';
+
+        break;
+
+        case 'news':
+          component = 'AppSectionNews';
+
+        break;
+      }
+      
+      this.currentSectionComponent = component;
+
     }
+
   }
 }
 </script>
